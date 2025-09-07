@@ -1,0 +1,243 @@
+<div class="card" style="margin: auto; margin-top: 2rem; width: 90%">
+  <div class="card-header bg-primary text-white">
+    <h1 class="mb-0">Simulador de Empréstimo</h1>
+    <h5 class="mb-0">
+      Preencha o formulário para saber se tem direito ao empréstimo desejado.
+    </h5>
+  </div>
+  <div class="card-body">
+    <form
+      id="loanForm"
+      action="{{ url_for('pred_loan_classification') }}"
+      method="post"
+    >
+      <div class="row">
+        <!-- Coluna Esquerda -->
+        <div class="col-md-5">
+          <!-- Valor do Empréstimo -->
+          <div class="mb-3">
+            <label for="valor_emprestimo" class="form-label"
+              >Valor do Empréstimo (R$)</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="valor_emprestimo"
+              name="valor_emprestimo"
+              required
+            />
+          </div>
+
+          <!-- Prazo do empréstimo -->
+          <div class="mb-3">
+            <label for="prazo_emprestimo_anos" class="form-label"
+              >Prazo do Empréstimo (anos)</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="prazo_emprestimo_anos"
+              name="prazo_emprestimo_anos"
+              required
+            />
+          </div>
+
+          <!-- Faixa de idade -->
+          <div class="mb-3">
+            <label for="faixa_idade" class="form-label">Idade</label>
+            <input
+              type="number"
+              class="form-control"
+              id="faixa_idade"
+              name="faixa_idade"
+              required
+            />
+          </div>
+
+          <!-- Outros planos de financiamento -->
+          <div class="mb-3">
+            <label for="outros_planos_financiamento" class="form-label"
+              >Outros Empréstimos em andamento</label
+            >
+            <select
+              class="form-select"
+              id="outros_planos_financiamento"
+              name="outros_planos_financiamento"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">Não</option>
+              <option value="1">Sim</option>
+            </select>
+          </div>
+
+          <!-- Histórico de crédito -->
+          <div class="mb-3">
+            <label for="historico_credito" class="form-label"
+              >Histórico de Crédito</label
+            >
+            <select
+              class="form-select"
+              id="historico_credito"
+              name="historico_credito"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">
+                Conta crítica / outros créditos existentes (não neste banco)
+              </option>
+              <option value="0">
+                Atraso no pagamento de dívidas no passado
+              </option>
+              <option value="1">
+                Todos os créditos pagos em dia até agora
+              </option>
+              <option value="1">
+                Nenhum crédito tomado / todos pagos corretamente
+              </option>
+              <option value="1">
+                Todos os créditos neste banco pagos corretamente
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Divisor vertical -->
+        <div class="col-md-1 d-flex justify-content-center">
+          <div class="vr"></div>
+        </div>
+
+        <!-- Coluna Direita -->
+        <div class="col-md-6">
+          <!-- Propriedade -->
+          <div class="mb-3">
+            <label for="propriedade" class="form-label">Propriedade</label>
+            <select
+              class="form-select"
+              id="propriedade"
+              name="propriedade"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">Desconhecido / sem propriedade</option>
+              <option value="1">Poupança em sociedade / seguro de vida</option>
+              <option value="1">Carro</option>
+              <option value="2">Imóvel próprio</option>
+            </select>
+          </div>
+
+          <!-- Tempo de Emprego Atual -->
+          <div class="mb-3">
+            <label for="tempo_emprego_atual" class="form-label"
+              >Tempo no Emprego Atual</label
+            >
+            <select
+              class="form-select"
+              id="tempo_emprego_atual"
+              name="tempo_emprego_atual"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">Desempregado</option>
+              <option value="0">Menos de 1 ano</option>
+              <option value="1">1 a 4 anos</option>
+              <option value="1">4 a 7 anos</option>
+              <option value="1">7 anos ou mais</option>
+            </select>
+          </div>
+
+          <!-- Reserva em conta corrente -->
+          <div class="mb-3">
+            <label for="reserva_cc" class="form-label">Outras Reservas</label>
+            <select
+              class="form-select"
+              id="reserva_cc"
+              name="reserva_cc"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">Até R$ 1600</option>
+              <option value="1">Mais de R$ 1600</option>
+            </select>
+          </div>
+
+          <!-- Tipo de Residência -->
+          <div class="mb-3">
+            <label for="tipo_residencia" class="form-label"
+              >Tipo de Residência</label
+            >
+            <select
+              class="form-select"
+              id="tipo_residencia"
+              name="tipo_residencia"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="1">Própria</option>
+              <option value="0">Alugada</option>
+            </select>
+          </div>
+
+          <!-- Conta Corrente -->
+          <div class="mb-3">
+            <label for="conta_corrente" class="form-label"
+              >Situação da Conta Corrente</label
+            >
+            <select
+              class="form-select"
+              id="conta_corrente"
+              name="conta_corrente"
+              required
+            >
+              <option value="">Selecione...</option>
+              <option value="0">Sem conta corrente / conta negativada</option>
+              <option value="1">Conta corrente positiva</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <div class="d-grid mt-3">
+        <button type="submit" class="btn btn-success">Simular</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("loanForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita submit padrão
+
+    // Cria objeto JSON a partir dos campos do form
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = Number(value); // Converte tudo para número
+    });
+
+    try {
+      const response = await fetch(
+        '{{ url_for("pred_loan_classification") }}',
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json();
+      if (result.pred === "0") {
+        alert("Você está apto a receber um empréstimo.");
+      } else {
+        alert("Você não está apto a receber um empréstimo.");
+      }
+    } catch (err) {
+      console.error("Erro ao enviar formulário:", err);
+    }
+  });
+</script>
