@@ -12,12 +12,9 @@ from .path import get_path
 def generate_footer() -> str:
     """
     Generate footer text with current year.
-
-    Returns:
-        str: Footer text in format "© YYYY - SMARTX"
     """
     year = datetime.now().year
-    return f"© {year} - SMARTX"
+    return f"© {year} - FIAP TECH CHALLENGE FASE 3"
 
 
 def get_template_globals() -> Dict[str, Any]:

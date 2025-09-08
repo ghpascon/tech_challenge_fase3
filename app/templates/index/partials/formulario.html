@@ -205,17 +205,40 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div id="modalHeader" class="modal-header">
+        <h5 class="modal-title">Resultado</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Aqui vai o resultado -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   const form = document.getElementById("loanForm");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita submit padrão
 
-    // Cria objeto JSON a partir dos campos do form
     const formData = new FormData(form);
     const data = {};
     formData.forEach((value, key) => {
-      data[key] = Number(value); // Converte tudo para número
+      data[key] = Number(value);
     });
 
     try {
@@ -223,19 +246,32 @@
         '{{ url_for("pred_loan_classification") }}',
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         }
       );
 
       const result = await response.json();
-      if (result.pred === "0") {
-        alert("Você está apto a receber um empréstimo.");
+      const modalBody = document.getElementById("modalBody");
+      const modalHeader = document.getElementById("modalHeader");
+
+      // Remove estilos anteriores
+      modalHeader.classList.remove("bg-success", "bg-danger", "text-white");
+
+      if (result.pred === 0) {
+        modalHeader.classList.add("bg-success", "text-white");
+        modalBody.innerHTML =
+          '<p class="text-success fw-bold fs-5">✅ Você está apto a receber um empréstimo!</p>';
       } else {
-        alert("Você não está apto a receber um empréstimo.");
+        modalHeader.classList.add("bg-danger", "text-white");
+        modalBody.innerHTML =
+          '<p class="text-danger fw-bold fs-5">❌ Você não está apto a receber um empréstimo.</p>';
       }
+
+      const resultModal = new bootstrap.Modal(
+        document.getElementById("resultModal")
+      );
+      resultModal.show();
     } catch (err) {
       console.error("Erro ao enviar formulário:", err);
     }
