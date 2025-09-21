@@ -30,7 +30,7 @@ Sistema simples para prever risco de crédito (aprovação de empréstimo) usand
    ```
 2. Crie um arquivo `.env` na raiz (opcional, mas recomendado) com, por exemplo:
    ```env
-   TITLE=SMARTX
+   TITLE=FIAP Tech Challenge
    SECRET_KEY=uma_chave_segura_aqui
    HOST=0.0.0.0
    PORT=5000
