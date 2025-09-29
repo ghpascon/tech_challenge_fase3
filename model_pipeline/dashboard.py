@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split
 from scipy.stats import pointbiserialr
 from imblearn.over_sampling import SMOTE
 
-API_URL = "http://localhost:5000"
+API_URL = "https://tech-challenge-fase3-5kbl.onrender.com"
 
 st.set_page_config(page_title="Crédito - Análise & Predição", layout="wide")
 
